@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Infolutions.http
 {
-    public class ApiConect
+    public class ConexionAApi
     {
         private static readonly HttpClient httpClient = new HttpClient();
         readonly string baseurl = "https://www.tusitioexpress.cl/pa-infolutions/public/api";
 
-        public async Task<ApiResponse> SendTransaction(string pathInfo, string body, string method = "POST")
+        public async Task<RespuestaApi> SendTransaction(string pathInfo, string body, string method = "POST")
         {
             string url = baseurl + pathInfo;
 
@@ -23,9 +23,9 @@ namespace Infolutions.http
             return await SendRequestAsync(url, body, method, headers);
         }
 
-        public static async Task<ApiResponse> SendRequestAsync(string url, string body, string method = "POST", Dictionary<string, string>? headers = null)
+        public static async Task<RespuestaApi> SendRequestAsync(string url, string body, string method = "POST", Dictionary<string, string>? headers = null)
         {
-            var response = new ApiResponse();
+            var response = new RespuestaApi();
             try
             {
                 // Crear la solicitud HTTP
